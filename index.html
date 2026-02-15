@@ -241,9 +241,87 @@
                 font-size: 16px;
             }
         }
+
+        /* Scatter Animation */
+        .scatter {
+            position: fixed;
+            pointer-events: none;
+            font-size: 20px;
+        }
+
+        @keyframes scatter {
+            0% {
+                transform: translate(0, 0) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(var(--tx), var(--ty)) scale(0);
+                opacity: 0;
+            }
+        }
+
+        .scatter-particle {
+            animation: scatter 1s ease-out forwards;
+        }
+
+        /* Splash Screen */
+        .splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            animation: splashFadeOut 1s ease-out 2.5s forwards;
+        }
+
+        .splash-flower {
+            font-size: 150px;
+            animation: flowerAppear 2s ease-in-out forwards;
+            filter: drop-shadow(0 0 20px rgba(255, 182, 193, 0.8));
+        }
+
+        @keyframes flowerAppear {
+            0% {
+                transform: scale(0) rotate(-360deg);
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1) rotate(0deg);
+                opacity: 1;
+            }
+        }
+
+        @keyframes splashFadeOut {
+            0% {
+                opacity: 1;
+                visibility: visible;
+            }
+            100% {
+                opacity: 0;
+                visibility: hidden;
+            }
+        }
+
+        /* Main content hidden initially */
+        body {
+            overflow: hidden;
+        }
     </style>
 </head>
 <body>
+    <!-- Splash Screen -->
+    <div class="splash-screen">
+        <div class="splash-flower">🌹</div>
+    </div>
+
     <!-- Floating Flowers Background -->
     <div class="flower flower1">🌹</div>
     <div class="flower flower2">🌺</div>
@@ -271,6 +349,13 @@
     </div>
 
     <script>
+        // Wait for splash screen to finish, then enable scrolling
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.body.style.overflow = 'visible';
+            }, 3500);
+        });
+
         // Reject button escaping effect
         const rejectBtn = document.querySelector('.btn-no');
         
@@ -283,9 +368,45 @@
             this.style.top = (this.offsetTop + randomY) + 'px';
         });
 
-        // Accept button confirmation
+        // Scatter animation function
+        function createScatter(x, y) {
+            const flowers = ['🌹', '🌺', '🌸', '🌼', '🌻', '🌷', '💐', '💕', '✨'];
+            
+            for (let i = 0; i < 15; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('scatter', 'scatter-particle');
+                particle.textContent = flowers[Math.floor(Math.random() * flowers.length)];
+                
+                // Random scatter direction
+                const angle = (Math.random() * Math.PI * 2);
+                const distance = 150 + Math.random() * 200;
+                const tx = Math.cos(angle) * distance;
+                const ty = Math.sin(angle) * distance;
+                
+                particle.style.left = x + 'px';
+                particle.style.top = y + 'px';
+                particle.style.setProperty('--tx', tx + 'px');
+                particle.style.setProperty('--ty', ty + 'px');
+                particle.style.setProperty('--rotation', Math.random() * 360 + 'deg');
+                
+                document.body.appendChild(particle);
+                
+                // Remove particle after animation
+                setTimeout(() => particle.remove(), 1000);
+            }
+        }
+
+        // Accept button confirmation with scatter effect
         const acceptBtn = document.querySelector('.btn-yes');
         acceptBtn.addEventListener('click', function() {
+            // Get button position
+            const rect = this.getBoundingClientRect();
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
+            
+            // Create scatter effect
+            createScatter(centerX, centerY);
+            
             alert('💕 Yay! Happy Valentine\'s Day, Deya Didi! 💕');
         });
     </script>
