@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Valentine's 💝</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+        }
+
+        /* Floating Flowers Animation */
+        .flower {
+            position: fixed;
+            font-size: 40px;
+            animation: float 8s infinite ease-in;
+            opacity: 0.7;
+        }
+
+        .flower1 { left: 10%; animation-delay: 0s; }
+        .flower2 { left: 20%; animation-delay: 1s; }
+        .flower3 { left: 30%; animation-delay: 2s; }
+        .flower4 { left: 40%; animation-delay: 3s; }
+        .flower5 { left: 50%; animation-delay: 1.5s; }
+        .flower6 { left: 60%; animation-delay: 2.5s; }
+        .flower7 { left: 70%; animation-delay: 0.5s; }
+        .flower8 { left: 80%; animation-delay: 3.5s; }
+        .flower9 { left: 90%; animation-delay: 1.2s; }
+
+        @keyframes float {
+            0% {
+                bottom: -50px;
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.7;
+            }
+            90% {
+                opacity: 0.7;
+            }
+            100% {
+                bottom: 100vh;
+                opacity: 0;
+            }
+        }
+
+        /* Main Container */
+        .container {
+            text-align: center;
+            position: relative;
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 60px 40px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            max-width: 600px;
+        }
+
+        /* Flower Display */
+        .flower-display {
+            font-size: 120px;
+            margin-bottom: 30px;
+            animation: bloomBounce 1.5s ease-in-out infinite;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+        }
+
+        @keyframes bloomBounce {
+            0%, 100% { 
+                transform: scale(1) rotate(0deg);
+            }
+            50% { 
+                transform: scale(1.1) rotate(5deg);
+            }
+        }
+
+        /* Main Message */
+        h1 {
+            font-size: 48px;
+            color: #ffffff;
+            margin-bottom: 20px;
+            animation: slideInDown 1s ease-out 0.5s both;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Subheading */
+        .name {
+            font-size: 42px;
+            color: #ffb3d9;
+            margin-bottom: 40px;
+            animation: slideInUp 1s ease-out 1s both;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Flower Text */
+        .flower-text {
+            font-size: 24px;
+            color: #e8d5f0;
+            margin-bottom: 30px;
+            animation: fadeIn 1.5s ease-out 1.5s both;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Animations */
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Button Container */
+        .button-container {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 50px;
+            animation: slideUp 1s ease-out 2s both;
+        }
+
+        /* Button Style */
+        .btn {
+            padding: 15px 40px;
+            background: linear-gradient(135deg, #ff1744, #ff6090);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 23, 68, 0.4);
+            transition: all 0.3s ease;
+            font-weight: bold;
+            position: relative;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 23, 68, 0.6);
+        }
+
+        .btn:active {
+            transform: translateY(-1px);
+        }
+
+        /* Yes Button */
+        .btn-yes {
+            background: linear-gradient(135deg, #4caf50, #45a049);
+        }
+
+        .btn-yes:hover {
+            box-shadow: 0 6px 20px rgba(76, 175, 80, 0.6);
+        }
+
+        /* No Button - Escaping Effect */
+        .btn-no {
+            background: linear-gradient(135deg, #f44336, #da190b);
+            position: relative;
+        }
+
+        .btn-no:hover {
+            left: 50px;
+            box-shadow: 0 6px 20px rgba(244, 67, 54, 0.6);
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .container {
+                padding: 40px 20px;
+            }
+
+            h1 {
+                font-size: 36px;
+            }
+
+            .name {
+                font-size: 32px;
+            }
+
+            .flower-text {
+                font-size: 20px;
+            }
+
+            .flower-display {
+                font-size: 80px;
+            }
+
+            .button-container {
+                gap: 15px;
+            }
+
+            .btn {
+                padding: 12px 30px;
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Flowers Background -->
+    <div class="flower flower1">🌹</div>
+    <div class="flower flower2">🌺</div>
+    <div class="flower flower3">🌸</div>
+    <div class="flower flower4">🌼</div>
+    <div class="flower flower5">🌻</div>
+    <div class="flower flower6">🌷</div>
+    <div class="flower flower7">💐</div>
+    <div class="flower flower8">🌺</div>
+    <div class="flower flower9">🌹</div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <h1>Happy Valentine's Day</h1>
+        <div class="name">Deeya Didi 🌹</div>
+        
+        <div class="flower-text">Here's your flower! 🌹</div>
+        
+        <div class="flower-display">🌹</div>
+        
+        <div class="button-container">
+            <button class="btn btn-yes">Accept 💚</button>
+            <button class="btn btn-no">Reject 💔</button>
+        </div>
+    </div>
+
+    <script>
+        // Reject button escaping effect
+        const rejectBtn = document.querySelector('.btn-no');
+        
+        rejectBtn.addEventListener('mouseover', function() {
+            const randomX = Math.random() * 200 - 100;
+            const randomY = Math.random() * 100 - 50;
+            
+            this.style.position = 'absolute';
+            this.style.left = (this.offsetLeft + randomX) + 'px';
+            this.style.top = (this.offsetTop + randomY) + 'px';
+        });
+
+        // Accept button confirmation
+        const acceptBtn = document.querySelector('.btn-yes');
+        acceptBtn.addEventListener('click', function() {
+            alert('💕 Yay! Happy Valentine\'s Day, Deya Didi! 💕');
+        });
+    </script>
+</body>
+</html>
