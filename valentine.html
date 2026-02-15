@@ -274,9 +274,9 @@
         // Reject button escaping effect
         const rejectBtn = document.querySelector('.btn-no');
         
-        rejectBtn.addEventListener('mouseover', function() {
-            const randomX = Math.random() * 200 - 100;
-            const randomY = Math.random() * 100 - 50;
+        rejectBtn.addEventListener('mousemove', function() {
+            const randomX = Math.random() * 400 - 200;
+            const randomY = Math.random() * 300 - 150;
             
             this.style.position = 'absolute';
             this.style.left = (this.offsetLeft + randomX) + 'px';
